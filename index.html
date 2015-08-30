@@ -15,7 +15,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <style>
+      /* listing the class twice bumps up the specificity by MAGIC! */
+      .atom-logo.atom-logo {
+        /* Reposition it. */
+        position: relative;
+        bottom: -0.3em;
+
+        /* Override all of the things! */
+        max-height: 1em;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+      }
+
+      .gamboge {
+        color: #E49B0F;
+      }
+
+      .blurry-overlay {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 2em;
+        box-shadow: 0 0 120px 70px rgba(0,0,0,0.7)
+      }
+    </style>
+
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -39,15 +64,95 @@
     <div class="reveal">
       <div class="slides">
         <section>
-          <h1>Gamboge</h1>
-          <h3>A Retrospective</h3>
+          <h1>Hacking <img class="atom-logo" alt="" src="images/atom-logo.png">Atom</h1>
+          <h3>My experience writing an NLP-powered code suggestion engine</h3>
           <p>
-            <small>By <a href="http://eddiantonio.ca/">Eddie Antonio Santos</a> / <a href="http://twitter.com/_eddieantonio">@_eddieantonio</a></small>
+            <small>By <a href="http://eddieantonio.ca/">Eddie Antonio Santos</a> / <a href="http://twitter.com/_eddieantonio">@_eddieantonio</a></small>
           </p>
+          <aside class="notes">
+              Hey ya'll. I'm eddieantonio. Last year I wrote a plugin for
+              GitHub's Atom editor. For SCIENCE! And I'm a tell you all about
+              it. But first...
+          </aside>
+        </section>
+
+        <!--
+        TODO: No longer assume that people know what Atom is.... or
+        NLP... or code suggestion... or other tokens...
+        a lot of things...
+        -->
+        <section>
+          <section
+            data-background="http://i.imgur.com/ENrwNJY.jpg"
+            data-background-repeat="no-repeat" >
+            <div class="blurry-overlay">
+              <h2> Let me tell you about my research! </h2>
+            </div>
+            <aside class="notes">
+              Let me tell you about my research!
+            </aside>
+          </section>
+
+          <section>
+            <h2> Naturalness of Software </h2>
+            <!-- Abram Collaborators... etc. -->
+            <aside class="notes">
+              Way back in the halcyon days of 2012, Abram Hindle and his
+              collaborators sought to find the answer to one question. It's
+              based on the premise that natural language processing tools ---
+              tools for analyzing language produced by actual human beings --
+              therefore, natural, have been used successfully on natural
+              language --
+            </aside>
+          </section>
+
+          <section>
+            <h2> Natural Language Processing </h2>
+            <h3> <em>n</em>-gram language model! </h3>
+            <aside class="notes">
+            <!-- touch this text up... -->
+              That is, the language that humans produce and use to
+              communicated with each other. But wait a minute... Language is
+              a natural product of humans; and software is a product made by
+              humans....
+            </aside>
+          </section>
+
+          <section>
+            <h2> Can natural language processing be successfully applied to software? </h2>
+            <aside class="notes">
+              Can natural language processing be successfully applied to software?
+            </aside>
+          </section>
+
+          <section>
+            <h1> Yes, probably. </h1>
+          </section>
+
+          <section>
+            <h2> <a href="https://youtu.be/sIlNIVXpIns">Look at this graph!</a> </h2>
+            <!-- TODO: insert entropy graph -->
+            <aside class="notes">
+              This graph shows that using n-gram language models, they're less
+              surprised with themselves on code than they are with English.
+              Great!
+            </aside>
+          </section>
         </section>
 
         <section>
-          <h1>Resources</h1>
+          <section>
+            <h2> Enter: <span class="gamboge">Gamboge</span> </h2>
+          </section>
+          <section>
+            <img style="width: 100%" src="https://cdn.rawgit.com/eddieantonio/atom-gamboge/gh-pages/img/gamboge-0.1.0.gif" alt="Gamboge in action!">
+          </section>
+        </section>
+
+        <!-- THE END -->
+        <section>
+          <h2>Resources</h2>
+          <h3> Natural Language Processing </h3>
           <ul>
             <li>
               <a href="https://class.coursera.org/nlp/lecture">Stanford NLP Lectures</a>
@@ -60,10 +165,19 @@
             </li>
           </ul>
         </section>
+
+        <section>
+          <h2> Special Thanks </h2>
+          <ul>
+            <li><a href="http://softwareprocess.es/">Abram Hindle</a></li>
+            <li><a href="http://hipposociety.com/">Alex Wilson</a></li>
+            <li><a href="http://orezpraw.com/">Josh</a></li>
+          </ul>
+        </section>
       </div>
     </div>
 
-    <!-- The template presentation is left here for refernce. -->
+    <!-- The template presentation is left here for reference. -->
     <div style="display: none">
 
       <!-- Any section element inside of this container is displayed as a slide -->
