@@ -1,0 +1,14 @@
+# Site settings
+title: Gamboge Retrospective 
+baseurl: "/gamboge-retrospective/" # the subpath of your site, e.g. /blog/
+url: "http://eddiantonio.ca" # the base hostname & protocol for your site
+
+exclude:
+    - node_modules
+    - CONTRIBUTING.md
+    - Gruntfile.js
+    - README.md
+    - test
+
+# Build settings
+markdown: kramdown
