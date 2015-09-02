@@ -83,15 +83,23 @@
           </p>
           <aside class="notes">
               Hey ya'll. I'm eddieantonio. Last year I wrote a plugin for
-              GitHub's Atom editor (pre 1.0). For SCIENCE! And I'm a tell you
+              GitHub's Atom editor For SCIENCE! (Pre 1.0).
+
+              How many people don't know what Atom is?
+
+              Okay, so Atom is like Sublime Text, but in JavaScript. It's
+              meant to be a web-technology powered editor, and at the time of
+              writing this plugin, it was... okay.
+
+              And I'm a tell you
               all about it. But first...  </aside>
         </section>
 
         <!-- RESEARCH -->
         <!--
-        TODO: No longer assume that people know what Atom is.... or
-        NLP... or code suggestion... or other tokens...
-        or n-gram language models
+          TODO: No longer assume that people know what Atom is.... or
+          NLP... or code suggestion... or other tokens...
+          or n-gram language models
         -->
         <section>
           <section
@@ -124,7 +132,17 @@
             <aside class="notes">
             <!-- touch this text up... -->
               That is, the language that humans produce and use to
-              communicated with each other. But wait a minute... Language is
+              communicated with each other.
+
+              Why use n-gram models? Because it's easy! You don't need very
+              knowledge of the programming language, and you don't need a lot
+              of static analysis, especially that which would be difficult to
+              pull off in real-time (for example, in JavaScript).
+
+              Natural language tends to exhibits regularity and
+              repetitiveness.
+
+              But wait a minute... Language is
               a natural product of humans; and software is a product made by
               humans....
             </aside>
@@ -141,20 +159,28 @@
             <h1> Yes, probably. </h1>
           </section>
 
+          <!--
           <section>
             <h2> <a style="color: white" href="https://youtu.be/sIlNIVXpIns">Look at this graph!</a> </h2>
-            <!-- TODO: insert entropy graph -->
+            <iframe src="//www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
             <aside class="notes">
+              (COPY RESULTS OF ABRAM'S PAPER.)
               This graph shows that using n-gram language models, they're less
               surprised with themselves on code than they are with English.
             </aside>
           </section>
+          -->
 
           <section>
             <h2> A veritable butt-tonne of applications! </h2>
+            <!-- Extol the virtues of naturalness -->
+              <!-- UnnaturalCode -->
+              <!-- Mining source code idioms -->
+              <!-- Localness -->
             <ul>
               <li> Pinpointing syntax errors and bugs </li>
               <li> Mining source code idioms </li>
+              <li> Better models taking locality into account </li>
               <li> Code completion and suggestion </li>
             </ul>
             <aside class="notes"> There are a TONNE of applications of the
@@ -166,10 +192,6 @@
               completion and suggestion that I want to talk about. </aside>
           </section>
 
-          <!-- Extol the virtues of naturalness -->
-            <!-- UnnaturalCode -->
-            <!-- Mining source code idioms -->
-            <!-- Localness -->
 
         </section>
 
@@ -177,13 +199,30 @@
         <section>
           <section>
             <h2> Enter: <span class="gamboge">Gamboge</span> </h2>
-            <h3 class="fragment"> Multitoken code suggestion </h3>
-          </section>
+            <h3 class="fragment"> Multitoken code suggestion in Atom </h3>
 
-          <!-- Multi-token code suggestion! -->
+            <aside class="notes">
+              Enter: Gamboge.
+
+              Gamboge improves upon the methods made by Hindle et al. and Tu
+              et al. by providing multi-token code suggestion. That is, it
+              doesn't just predict one word or punctuation in advance; it
+              predicts as many as it possibly can, exploiting the fact that
+              code tends to be general.
+            </aside>
+          </section>
 
           <section>
             <img class="stretch" src="https://cdn.rawgit.com/eddieantonio/atom-gamboge/gh-pages/img/gamboge-0.1.0.gif" alt="Gamboge in action!">
+
+            <aside class="notes">
+              Here is an animated /ʒaɪf/ of Gamboge predicting Python code.
+
+              [ad lib about multi-token prediction, whitespace prediction].
+
+              It's secret for producing multiple tokens is sorting suggestions
+              using mean surprise!
+            </aside>
           </section>
 
           <section data-background=>
@@ -193,11 +232,105 @@
               $$S_{i} = \frac{I_{i}}{|t_{i}|}$$
             </div>
             <h3 class="fragment"> (Steal this!) </h3>
+
+            <aside class="notes">
+              In an n-gram language model, we care about the surprisal of a
+              sequence of tokens. It's literally just that: given some tokens,
+              how surprising is it relative to the language model?
+
+              This give us an intuitive way at looking at the next token's
+              probability. The most probable token following some sequence is
+              the least surprising token after the sequence.  Indeed, we call
+              this measure the surprise of the token sequence. An event that
+              is certain to happen, would have a probability of 100%. It is
+              “not surprising”, so its surprisal value is 0. Similarly, an
+              impossible event (according to our model) would leave us
+              “infinitely surprised”.
+
+              Adding another token to a suggestion will almost always
+              increases the overall surprisal of the suggestion (unless that
+              next token follows the last 100% of the time). So, how do we
+              prioritize longer, but more useful suggestions? Instead of
+              sorting suggestions based on the surprisal of the entire
+              suggestion, we'll sort it according to the average, or mean
+              surprise of the entire suggestion. This means for single token
+              suggestions, its surprisal doesn't change. But for multitoken
+              suggestions, where some tokens contribute very little to the
+              surprisal of the suggestion, the longer suggestion is given.
+
+              $S_{i}$ is the rank of suggestion $i$. $I_{i}$ here is the
+              surprisal of all of the tokens in this suggestion. Therefore,
+              just divide the total of tokens in the suggestion and we get an
+              arithmetic mean.
+
+              (a thought occurs: do we want mean surprise or mean probability?
+              Because, mean probability would require log transforming...).
+
+              It's effectiveness is left as an exercise for the reader...
+            </aside>
           </section>
 
-          <!-- Multi-token code suggestion! -->
-          <!-- Mean surprise! -->
-          <!-- STEAL THIS SLIDE -->
+        </section>
+
+        <section>
+          <section>
+            <h2> Lessons Learned </h2>
+          </section>
+          <section>
+            <h2> It's just JavaScript (& npm!)</h2>
+
+            <div class="fragment"> Atom Electron </div>
+
+            <aside class="notes">
+              It's pretty rad.
+            </aside>
+          </section>
+
+          <section>
+            <h2> The Atom Community is... uh... </h2>
+
+            <aside class="notes">
+              Personal opinion time. The Atom community is kind of... weird.
+
+              They have a style guide, but it lists what kind of emoji you
+              SHOULD use in commit messages.
+
+              They also want all of the code to be in CoffeeScript. I won't
+              comment on CoffeeScript itself, but they're very insistent, to
+              the point of starting flame wars on the Atom discussion threads.
+              Note that this persists even in a post-ECMAScript 6 world.
+            </aside>
+          </section>
+
+          <section>
+            <h2> Relying on Pre 1.0 APIs </h2>
+            <h3 class="fragment"> BAD IDEA </h3>
+
+            <aside class="notes">
+              I'd often get the rug pulled out underneath me as APIs were
+              constantly changing. Not to mention the API docs were... lacking
+              at best. I actually started a pull request to improve their docs
+              for writing tests, and documenting the monkey-patching they did
+              to make tests happen; but I ultimately did not complete it.
+
+              Speaking of tests.
+            </aside>
+          </section>
+
+          <section>
+            <h2> Asynchronous testing in Jasmine 1.x </h2>
+            <h3 class="fragment"> BAD IDEA </h3>
+
+            <aside class="notes"> In Atom, there's not good way to use any
+              other testing framework than Jasmine 1.3. That's it. It's bundled
+              in.  And it's pretty cool, that you can full script the editor.
+              Really neat! But a lot of my tests involved asynchronous code.  Who
+              has tested asynchronous code in Jasmine prior to version 1?  It's a
+              bad idea. It's clunky, and problematic. And was the source of much
+              frustration.
+            </aside>
+          </section>
+
         </section>
 
         <!-- Lessons learned -->
@@ -213,36 +346,42 @@
 
         <!-- THE END -->
         <section>
-          <h2>Resources</h2>
-          <h3> Natural Language Processing </h3>
-          <ul>
-            <li>
-              <a href="https://class.coursera.org/nlp/lecture">Stanford NLP Lectures</a>
-            </li>
-            <li>
-              <a href="https://github.com/NaturalNode/natural">NaturalNode</a>
-            </li>
-            <li>
-              <a href="http://www.nltk.org/">NLTK (Python)</a>
-            </li>
-          </ul>
-          <h3> Language Tools </h3>
-          <ul>
-            <li>
-              <a href="http://esprima.org/">Esprima</a>
-            </li>
-            <li>
-              <a href="https://github.com/estools/escodegen">escodegen</a>
-            </li>
-          </ul>
+          <section>
+            <h2>Resources</h2>
+            <h3> Natural Language Processing </h3>
+            <ul>
+              <li>
+                <a href="https://class.coursera.org/nlp/lecture">Stanford NLP Lectures</a>
+              </li>
+              <li>
+                <a href="https://github.com/NaturalNode/natural">NaturalNode</a>
+              </li>
+              <li>
+                <a href="http://www.nltk.org/">NLTK (Python)</a>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Resources</h2>
+            <h3> Language Tools </h3>
+            <ul>
+              <li>
+                <a href="http://esprima.org/">Esprima</a>
+              </li>
+              <li>
+                <a href="https://github.com/estools/escodegen">escodegen</a>
+              </li>
+            </ul>
+          </section>
         </section>
 
         <section>
           <h2> Special Thanks </h2>
           <ul>
             <li><a href="http://softwareprocess.es/">Abram Hindle</a></li>
+            <li><a href="http://orezpraw.com/">Joshua Charles Campbell</a></li>
             <li><a href="http://hipposociety.com/">Alex Wilson</a></li>
-            <li><a href="http://orezpraw.com/">Josh</a></li>
           </ul>
         </section>
       </div>
