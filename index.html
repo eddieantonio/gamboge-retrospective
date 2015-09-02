@@ -39,6 +39,17 @@
         padding: 2em;
         box-shadow: 0 0 120px 70px rgba(0,0,0,0.7)
       }
+
+      img.haunter.haunter {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        position: absolute;
+        top: 0.5em;
+        left: -5em;
+        z-index: -10;
+        opacity: 0.2;
+      }
     </style>
 
 
@@ -72,9 +83,8 @@
           </p>
           <aside class="notes">
               Hey ya'll. I'm eddieantonio. Last year I wrote a plugin for
-              GitHub's Atom editor. For SCIENCE! And I'm a tell you all about
-              it. But first...
-          </aside>
+              GitHub's Atom editor (pre 1.0). For SCIENCE! And I'm a tell you
+              all about it. But first...  </aside>
         </section>
 
         <!-- RESEARCH -->
@@ -110,7 +120,7 @@
 
           <section>
             <h2> Natural Language Processing </h2>
-            <h3> <em>n</em>-gram language model! </h3>
+            <h3> $n$-gram language model </h3>
             <aside class="notes">
             <!-- touch this text up... -->
               That is, the language that humans produce and use to
@@ -132,16 +142,31 @@
           </section>
 
           <section>
-            <h2> <a href="https://youtu.be/sIlNIVXpIns">Look at this graph!</a> </h2>
+            <h2> <a style="color: white" href="https://youtu.be/sIlNIVXpIns">Look at this graph!</a> </h2>
             <!-- TODO: insert entropy graph -->
             <aside class="notes">
               This graph shows that using n-gram language models, they're less
               surprised with themselves on code than they are with English.
-              Great!
             </aside>
           </section>
 
-          <!-- Extoll the virtues of naturalness -->
+          <section>
+            <h2> A veritable butt-tonne of applications! </h2>
+            <ul>
+              <li> Pinpointing syntax errors and bugs </li>
+              <li> Mining source code idioms </li>
+              <li> Code completion and suggestion </li>
+            </ul>
+            <aside class="notes"> There are a TONNE of applications of the
+              naturalness of software. Our colleague enhanced compilation
+              errors for syntax errors, giving a better idea of where the
+              error actually is than the compiler. We can also mine source
+              code idioms a.k.a. snippets, and never have to manually create
+              snippet templates ever again!  But it's this last one, code
+              completion and suggestion that I want to talk about. </aside>
+          </section>
+
+          <!-- Extol the virtues of naturalness -->
             <!-- UnnaturalCode -->
             <!-- Mining source code idioms -->
             <!-- Localness -->
@@ -152,6 +177,7 @@
         <section>
           <section>
             <h2> Enter: <span class="gamboge">Gamboge</span> </h2>
+            <h3 class="fragment"> Multitoken code suggestion </h3>
           </section>
 
           <!-- Multi-token code suggestion! -->
@@ -159,6 +185,16 @@
           <section>
             <img class="stretch" src="https://cdn.rawgit.com/eddieantonio/atom-gamboge/gh-pages/img/gamboge-0.1.0.gif" alt="Gamboge in action!">
           </section>
+
+          <section data-background=>
+            <h2> Mean Surprise </h2>
+            <img class="haunter" data-src="images/haunter.png" />
+            <div class="fragment" style="margin: 1em; font-size: 3em">
+              $$S_{i} = \frac{I_{i}}{|t_{i}|}$$
+            </div>
+            <h3 class="fragment"> (Steal this!) </h3>
+          </section>
+
           <!-- Multi-token code suggestion! -->
           <!-- Mean surprise! -->
           <!-- STEAL THIS SLIDE -->
@@ -578,7 +614,9 @@ Reveal.addEventListener( 'customevent', function() {
                     { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
                     { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
                     { src: 'plugin/zoom-js/zoom.js', async: true },
-                    { src: 'plugin/notes/notes.js', async: true }
+                    { src: 'plugin/notes/notes.js', async: true },
+                    // MathJax
+                    { src: 'plugin/math/math.js', async: true }
                   ]
                 });
 
