@@ -75,6 +75,7 @@
 
   <body>
 
+    <!-- TODO: Rewrite script for naturalness especially! -->
     <div class="reveal">
       <div class="slides">
         <!-- INTRODUCTION -->
@@ -185,6 +186,7 @@
               <!-- UnnaturalCode -->
               <!-- Mining source code idioms -->
               <!-- Localness -->
+              <!-- Add more applications -->
             <ul>
               <li> Pinpointing syntax errors and bugs </li>
               <li> Mining source code idioms </li>
@@ -271,7 +273,7 @@
               just divide the total of tokens in the suggestion and we get an
               arithmetic mean.
 
-              (a thought occurs: do we want mean surprise or mean probability?
+              (A thought occurs: do we want mean surprise or mean probability?
               Because, mean probability would require log transforming...).
 
               It's effectiveness is left as an exercise for the reader...
@@ -295,15 +297,18 @@
             </div>
 
             <aside class="notes">
-              Atom Electron (formerly known as Atom Shell ) which is basically
-              the Blink renderiing engine (WebKit) smushed together with
-              Node.js.  It's pretty rad! And you can use it independently of
-              Atom to make desktop apps in HTML and Javascript.
+              Atom Electron (formerly known as Atom Shell ) is basically the
+              Chromium smushed together with Node.js.  It's pretty rad! And
+              you can use it independently of Atom to make desktop apps in
+              HTML and Javascript. No bundler (Browserify, WebPack) required.
+
+              Does anybosdy use Slack? Slack is made using Electron!
 
               You can just use npm and `require` like normal, which grants you
-              one of the
-              best parts of javascript. Plus it has most front-end libraries,
-              incluing React and jQuery.
+              one of the best parts of javascript. Plus it has most front-end
+              libraries, incluing React and jQuery.
+
+              That said, it's React. So don't touch the DOM!
             </aside>
           </section>
 
@@ -311,7 +316,7 @@
             <h2> The Atom Community is... uh... </h2>
 
             <aside class="notes">
-              Disclaimer: this is my personal opinion time. Your milage may
+              Disclaimer: this is my personal opinion. Your milage may
               vary! The Atom community is kind of...  interesting.
 
               So, I'm one of those obnoxious people that overuses emoji. But
@@ -322,7 +327,7 @@
 
           <!-- emoji style guide -->
           <section>
-            <h3>Priorities!</h3>
+            <h3>Interesting priorities</h3>
 
             <a href="https://github.com/atom/atom/blob/master/CONTRIBUTING.md#git-commit-messages">
               <img data-src="images/emoji-style.png" src="about:blank"
@@ -345,22 +350,21 @@
             <aside class="notes">
               Remember that part where I said it was just JavaScript? I lied.
               It's just CoffeeScript. It'd be pointless for me to comment
-              about CoffeeScript itself; but the community's faith steadfast
-              insistence to the language is... unfortunate.
-              Anything that compiles to JavaScript will work... so...
-              everything ever.
+              about CoffeeScript itself; but the community's steadfast
+              insistence to the language is... a bit baffling.  Anything that
+              compiles to JavaScript will work... that is, everything ever.
 
               And yet they start flamewars on this issue.
 
-              The fact that this happens in a post-ES6 world is a little
-              problematic for me.
+              The fact that this happens in a post-ES6 world seems
+              problematic to me.
             </aside>
           </section>
 
 
           <!-- this guy -->
 
-          <section>
+          <!--section>
             <a href="http://atomio.discourse.org/t/why-only-jasmine-1-3/19047/4">
               <img src="about:blank" alt=":/" data-src="images/lee-dohm.png" />
             </a>
@@ -368,7 +372,7 @@
             <aside class="notes">
               This just pissed me off.
             </aside>
-          </section>
+          </section-->
 
           <section>
             <h2> The Atom Community is... uh... </h2>
@@ -380,6 +384,29 @@
               So the Atom Community is... yeah.
             </aside>
           </section>
+
+          <section>
+            <h2> Atom's Syntax Highligting Tokenizer </h2>
+            <h3 class="fragment"> Insufficient for prediction! </h3>
+            <code style="white-space: pre" class="fragment"><a href="http://esprima.org/doc/index.html">require('esprima').tokenize('const hello = `world`');</a></code>
+
+            <aside class="notes">
+              Earlier, I mentioned that all you need for an n-gram are those
+              precious, precious tokens; basically, a syntax highlighter
+              should probably have a good idea of what tokens are in a
+              language if it's going to highlight it. That said, using the
+              tokens from the syntax highlighter is insufficient; its regular
+              expressions often groups tokens together, or add whitespace to
+              the defintion of a token that would otherwise lack it.
+              Additionally, it knows nothing of the INDENT and DEDENT tokens
+              in whitespace sensitive langauges (Python, Haskell, YAML,
+              CoffeeScript), so it's completely useless for these langauges.
+
+              Luckily, one can use an external tool Esprima to do the
+              tokenization for you.
+            </aside>
+          </section>
+
 
           <section>
             <h2> Relying on Pre 1.0 APIs </h2>
@@ -395,10 +422,14 @@
               At this point, I didn't know what React was, so I went ahead and
               modifed the DOM by hand. It's just JavaScript! But then they
               updated their React version which added aggressive checking of
-              DOM invariants and inevitablly broke Gamboge. It has stayed in
-              this state FOREVER.
+              DOM invariants and inevitablly broke Gamboge. Gamboge has stayed
+              in this state FOREVER.
 
-              Speaking of tests.
+              Speaking of tests...
+
+              Also, the Vim-Mode was shit, and I actually learned plugin
+              develpoing from having to patch the Vim-mode and <a
+                href="https://github.com/atom/vim-mode/pull/410">make a PR</a>.
             </aside>
           </section>
 
@@ -406,28 +437,38 @@
             <h2> Asynchronous testing in Jasmine 1.x </h2>
             <h3 class="fragment"> BAD IDEA </h3>
 
-            <aside class="notes"> In Atom, there's not good way to use any
-              other testing framework than Jasmine 1.3. That's it. It's bundled
-              in.  And it's pretty cool, that you can full script the editor.
-              Really neat! But a lot of my tests involved asynchronous code.  Who
-              has tested asynchronous code in Jasmine prior to version 1?  It's a
-              bad idea. It's clunky, and problematic. And was the source of much
-              frustration.
+            <aside class="notes">
+
+              In Atom, there's not good way to use any other testing framework
+              than Jasmine 1.3. That's it. It's bundled in.
+
+              The testing facillities are pretty cool; you can fully script
+              the editor.  Really neat! But a lot of my tests involved
+              asynchronous code.  Who has tested asynchronous code in Jasmine
+              prior to version 2?  It's a bad idea. It's clunky, and
+              problematic. This was the source of much frustration.
             </aside>
           </section>
-
         </section>
 
-        <!-- Lessons learned -->
-          <!-- What's great! -->
-            <!-- It's just JavaScript & npm! -->
-            <!-- Atom Electron! -->
-          <!-- What's not so great... -->
-            <!-- Async testing with Jasmine 1.3... -->
-            <!-- The community... -->
-            <!-- CoffeeScript -->
-            <!-- Constantly shifting API and Atom devs' ADHD. -->
-            <!-- React - I like react but... -->
+        <section>
+          <h2> Conclusion </h2>
+
+          <aside class="notes">
+
+            While there a few problem with Atom, if you're willing to put up
+            with the mild absurdity of the community, its use of modern web-technologies
+            makes it an incredible platform for making attractive text editor
+            plugins.
+
+            The state of Atom *has* improved, and the fact that it's at 1.0
+            means the API is moderatly stable; you shouldn't have the same
+            problems as I did.
+
+            And if you don't like Atom itself, you can make your own text
+            editor using Atom Electron.
+          </aside>
+        </section>
 
         <!-- THE END -->
         <section>
