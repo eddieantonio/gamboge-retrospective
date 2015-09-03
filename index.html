@@ -140,7 +140,13 @@
              <aside class="notes">
                 <p>Well, yes.</p>
                 <p>The end results is that code tends to be even more repeatable and predictable than English when using N-gram language models. Which is a great result, but what does it do for us?</p>
-             </aside>
+                <p>n-gram langauge models are nice, because all you need to
+                  know are the tokens of the language. Tokens being words an
+                  punctuation, and in whitespace sensitive langauge,
+                  indentation. So you don't need to know anything about the
+                  langauge's actual syntax, or its type system, or
+                  anything.</p>
+            </aside>
           </section>
 
           <!--
@@ -171,7 +177,7 @@
               <p>Well, a lot of things!</p>
               <p>Just a few of the applications are: pinpointing syntax errors in amateur code---code that looks a bit odd to our language models likely is the root cause of a syntax error, even if the compiler detects it somewhere else entirely.</p>
               <p>We can find find common idioms in code---little snippets or templates of code, that are used a lot and infer what they mean, and what they mean about the code they're found in. And we can make it easier to input these snippets as well.</p>
-              <p>And, there is code completion and code suggestion. You can predict the next word or punctuation in a programming language by simply asking the language model what it thinks. Abram and pals developed one such application, that predicts exactly one word or punctuation in the future.</p>
+              <p>And, there is code completion and code suggestion. You can predict the next word or punctuation in a programming language by simply asking the language model what it thinks. Abram and pals developed one such application, that predicts exactly one word or punctuation (henceforth: token) in the future.</p>
             </aside>
           </section>
 
@@ -193,11 +199,11 @@
             <img class="stretch" src="https://cdn.rawgit.com/eddieantonio/atom-gamboge/gh-pages/img/gamboge-0.1.0.gif" alt="Gamboge in action!">
 
             <aside class="notes">
-              Here is an animated /ʒaɪf/ of Gamboge predicting Python code.
+              <p>Here is an animated /ʒaɪf/ of Gamboge predicting Python code.
 
-              [ad lib about multi-token prediction, whitespace prediction].
+              <p>[ad lib about multi-token prediction, whitespace prediction].
 
-              It's secret for producing multiple tokens is sorting suggestions
+              <p>Its secret for producing multiple tokens is sorting suggestions
               using averaging the surprisal of each token in the suggestion:
               that is, the mean surprise.
             </aside>
@@ -215,8 +221,7 @@
               <p>In an n-gram language model, we care about the surprisal of a
               sequence of tokens. I could bore you about negative log
               probability, but it's actually pretty intuitive: given some
-              words and punctuation, how surprising is it to find it in the
-              general language?
+              tokens, how surprising is it to find it in the language model?
 
               <p>This give us an intuitive way at looking at the next token's
               probability. The most probable token following some sequence is
@@ -329,7 +334,7 @@
               It's just CoffeeScript. It'd be pointless for me to comment
               about CoffeeScript itself; but the community's steadfast
               insistence to the language is... a bit baffling.  Anything that
-              compiles to JavaScript will work... that is, everything ever.
+              compiles to JavaScript will work... so, anything ever.
 
               <p>And yet they start flamewars on this issue.
 
@@ -415,15 +420,17 @@
             <h3 class="fragment"> BAD IDEA </h3>
 
             <aside class="notes">
-              <p>In Atom, there's not good way to use any other testing framework
-              than Jasmine 1.3. That's it. It's bundled in.
+              <p>In Atom, there's no good way to test your plugin using any
+                other testing framework than Jasmine 1.3. That's because it's
+                bundled into Atom.
 
-              <p>The testing facillities are pretty cool; you can fully script
-              the editor.  Really neat! But a lot of my tests involved
-              asynchronous code.  Who has tested asynchronous code in Jasmine
-              prior to version 2?  It's a bad idea. It's clunky, and
-              problematic. This was the source of much frustration.
-            </aside>
+              <p>The testing facillities themselves are pretty cool; you can
+                fully script the editor.  Really neat! But a lot of my tests
+                involved asynchronous code.  Who has tested asynchronous code
+                in Jasmine prior to version 2?  It's a bad idea. It's clunky,
+                and problematic. This was the source of much frustration.
+
+              </aside>
           </section>
         </section>
 
@@ -437,9 +444,9 @@
             makes it an incredible platform for making attractive text editor
             plugins.
 
-            <p>The state of Atom <em>has</em> improved, and the fact that it's at 1.0
-            means the API is moderatly stable; you shouldn't have the same
-            problems as I did.
+            <p>The state of Atom <em>has</em> improved, and the fact that it's
+              at 1.0 means the API is moderatly stable; you shouldn't have the
+              same problems as I did.
 
             <p>And if you don't like Atom itself, you can make your own text
             editor using Atom Electron.
