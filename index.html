@@ -41,14 +41,17 @@
       }
 
       img.haunter.haunter {
-        background: transparent;
-        border: none;
-        box-shadow: none;
         position: absolute;
         top: 0.5em;
         left: -5em;
         z-index: -10;
         opacity: 0.2;
+      }
+
+      img.no-border.no-border {
+        background: transparent;
+        border: none;
+        box-shadow: none;
       }
     </style>
 
@@ -128,7 +131,7 @@
 
           <section>
             <h2> Natural Language Processing </h2>
-            <h3> $n$-gram language model </h3>
+            <h3 class="fragment"> $n$-gram language model </h3>
             <aside class="notes">
             <!-- touch this text up... -->
               That is, the language that humans produce and use to
@@ -138,6 +141,11 @@
               knowledge of the programming language, and you don't need a lot
               of static analysis, especially that which would be difficult to
               pull off in real-time (for example, in JavaScript).
+
+              An n-gram language model counts how many times a string of
+              tokens has been seen in some training data, called its corpus.
+              The n of n-gram denotes the order of the language model, or how
+              many contiguous tokens are counted in the language model.
 
               Natural language tends to exhibits regularity and
               repetitiveness.
@@ -172,7 +180,7 @@
           -->
 
           <section>
-            <h2> A veritable butt-tonne of applications! </h2>
+            <h2> A veritable buttload of applications! </h2>
             <!-- Extol the virtues of naturalness -->
               <!-- UnnaturalCode -->
               <!-- Mining source code idioms -->
@@ -227,7 +235,7 @@
 
           <section data-background=>
             <h2> Mean Surprise </h2>
-            <img class="haunter" src="about:blank" alt="Haunter" data-src="images/haunter.png" />
+            <img class="haunter no-border" src="about:blank" alt="Haunter" data-src="images/haunter.png" />
             <div class="fragment" style="margin: 1em; font-size: 3em">
               $$S_{i} = \frac{I_{i}}{|t_{i}|}$$
             </div>
@@ -279,14 +287,21 @@
           <section>
             <h2> It's just JavaScript (&amp; npm!)</h2>
 
-            <div class="fragment"></div>
+            <div class="fragment">
+              <a href="http://electron.atom.io/"><img
+                class="no-border"
+                data-src="http://electron.atom.io/images/electron-logo.svg"
+                src="about:blank" alt="Electron" /></a>
+            </div>
 
             <aside class="notes">
-              Atom Electron which is basically chromium mashed together with
-              node.js.  It's pretty rad. I don't know enough about it to
-              compare it with React Native, but they are similar.
+              Atom Electron (formerly known as Atom Shell ) which is basically
+              the Blink renderiing engine (WebKit) smushed together with
+              Node.js.  It's pretty rad! And you can use it independently of
+              Atom to make desktop apps in HTML and Javascript.
 
-              You can just use npm and `require` like normal, which grants you one of the
+              You can just use npm and `require` like normal, which grants you
+              one of the
               best parts of javascript. Plus it has most front-end libraries,
               incluing React and jQuery.
             </aside>
@@ -296,15 +311,73 @@
             <h2> The Atom Community is... uh... </h2>
 
             <aside class="notes">
-              Personal opinion time. The Atom community is kind of... weird.
+              Disclaimer: this is my personal opinion time. Your milage may
+              vary! The Atom community is kind of...  interesting.
 
-              They have a style guide, but it lists what kind of emoji you
-              SHOULD use in commit messages.
+              So, I'm one of those obnoxious people that overuses emoji. But
+              even I have to draw the line when I saw this in their official
+              CONTRIBUTING.md.
+            </aside>
+          </section>
 
-              They also want all of the code to be in CoffeeScript. I won't
-              comment on CoffeeScript itself, but they're very insistent, to
-              the point of starting flame wars on the Atom discussion threads.
-              Note that this persists even in a post-ECMAScript 6 world.
+          <!-- emoji style guide -->
+          <section>
+            <h3>Priorities!</h3>
+
+            <a href="https://github.com/atom/atom/blob/master/CONTRIBUTING.md#git-commit-messages">
+              <img data-src="images/emoji-style.png" src="about:blank"
+                  alt="Emoji style guide">
+            </a>
+
+            <aside class="notes">
+              It's a commit message emoji guide. And they're buttfucking
+              serious about it.
+            </aside>
+          </section>
+
+          <!-- flamewar -->
+          <section>
+            <h3>CoffeeScript</h3>
+
+            <a href="https://discuss.atom.io/t/why-coffeescript/131">Anyone
+              down for a flamewar?</a>
+
+            <aside class="notes">
+              Remember that part where I said it was just JavaScript? I lied.
+              It's just CoffeeScript. It'd be pointless for me to comment
+              about CoffeeScript itself; but the community's faith steadfast
+              insistence to the language is... unfortunate.
+              Anything that compiles to JavaScript will work... so...
+              everything ever.
+
+              And yet they start flamewars on this issue.
+
+              The fact that this happens in a post-ES6 world is a little
+              problematic for me.
+            </aside>
+          </section>
+
+
+          <!-- this guy -->
+
+          <section>
+            <a href="http://atomio.discourse.org/t/why-only-jasmine-1-3/19047/4">
+              <img src="about:blank" alt=":/" data-src="images/lee-dohm.png" />
+            </a>
+
+            <aside class="notes">
+              This just pissed me off.
+            </aside>
+          </section>
+
+          <section>
+            <h2> The Atom Community is... uh... </h2>
+
+            <!--- using tags for formatting like it's 1998! -->
+            <h1 style='font-family: "Apple Color Emoji", sans-serif;' class="fragment">💩</h1>
+
+            <aside class="notes">
+              So the Atom Community is... yeah.
             </aside>
           </section>
 
